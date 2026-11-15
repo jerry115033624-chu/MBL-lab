@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>微流體晶片與 CSR 演算法應用入門指南</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
+
+  <!-- 全螢幕 Scroll-Snap 主容器 -->
+  <main class="h-screen w-full overflow-y-scroll snap-y snap-mandatory no-scrollbar">
+
+    <!-- Slide 1: 醫療背景與挑戰 -->
+    <section class="h-screen w-full snap-start flex items-center justify-center p-6 md:p-12 relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div class="max-w-3xl w-full bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-8 md:p-10 shadow-2xl backdrop-blur">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-xs font-semibold tracking-widest text-cyan-400 uppercase">Slide 01 / 04</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-300 border border-cyan-500/20">應用目標</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">卵巢癌藥物篩選與晶片使命</h2>
+        <ul class="space-y-4 text-slate-300 text-base md:text-lg">
+          <li class="flex items-start">
+            <span class="text-cyan-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>評估小分子藥物與免疫療法對卵巢癌及膽管癌細胞毒性。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-cyan-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>傳統全面測試耗費龐大，微流體高通量平台大幅縮減實體實驗。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-cyan-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>整合 CSR 軟體，精準預測並篩選出殺死癌細胞的最佳藥物組合。</span>
+          </li>
+        </ul>
+      </div>
+      <div class="absolute bottom-6 text-slate-500 text-xs animate-bounce">↓ 向下滑動閱讀下一頁</div>
+    </section>
+
+    <!-- Slide 2: 硬體製程與品質控制 -->
+    <section class="h-screen w-full snap-start flex items-center justify-center p-6 md:p-12 relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div class="max-w-3xl w-full bg-slate-900/80 border border-amber-500/30 rounded-2xl p-8 md:p-10 shadow-2xl backdrop-blur">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-xs font-semibold tracking-widest text-amber-400 uppercase">Slide 02 / 04</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">硬體工藝</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">PDMS 晶片製作與微影品管</h2>
+        <ul class="space-y-4 text-slate-300 text-base md:text-lg">
+          <li class="flex items-start">
+            <span class="text-amber-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>PDMS 主劑與硬化劑 10:1 調配，真空抽氣 30 分鐘徹底脫泡。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-amber-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>80°C 烘烤 2 小時固化，冷卻後手術刀輕劃脫模避免扯裂流道。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-amber-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>E-beam 劑量過高會引發散射效應毀損光阻，需導入測試陣列校正。</span>
+          </li>
+        </ul>
+      </div>
+      <div class="absolute bottom-6 text-slate-500 text-xs animate-bounce">↓ 向下滑動閱讀下一頁</div>
+    </section>
+
+    <!-- Slide 3: 演算法架構與矩陣優化 -->
+    <section class="h-screen w-full snap-start flex items-center justify-center p-6 md:p-12 relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div class="max-w-3xl w-full bg-slate-900/80 border border-indigo-500/30 rounded-2xl p-8 md:p-10 shadow-2xl backdrop-blur">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-xs font-semibold tracking-widest text-indigo-400 uppercase">Slide 03 / 04</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">軟體大腦</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">自研 Python CSR 演算法大腦</h2>
+        <ul class="space-y-4 text-slate-300 text-base md:text-lg">
+          <li class="flex items-start">
+            <span class="text-indigo-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>以 Python 獨立打包開發，專為處理高維度複雜系統變數設計。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-indigo-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>模組 A 生成 OACD 矩陣，依 11~15 因子與 Small/Medium/Large 表格大小，將實驗精簡至 68~310 組。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-indigo-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>結合模組 B 反應曲面法與模組 C 時域擬合，動態掌握因子變化。</span>
+          </li>
+        </ul>
+      </div>
+      <div class="absolute bottom-6 text-slate-500 text-xs animate-bounce">↓ 向下滑動閱讀下一頁</div>
+    </section>
+
+    <!-- Slide 4: 虛實整合成果與閉環 -->
+    <section class="h-screen w-full snap-start flex items-center justify-center p-6 md:p-12 relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <div class="max-w-3xl w-full bg-slate-900/80 border border-emerald-500/30 rounded-2xl p-8 md:p-10 shadow-2xl backdrop-blur">
+        <div class="flex items-center justify-between mb-6">
+          <span class="text-xs font-semibold tracking-widest text-emerald-400 uppercase">Slide 04 / 04</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">虛實整合</span>
+        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">軟硬協同：極簡實驗預測全貌</h2>
+        <ul class="space-y-4 text-slate-300 text-base md:text-lg">
+          <li class="flex items-start">
+            <span class="text-emerald-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>演算法導航：OACD 矩陣將龐大組合收斂至 68~310 組配方，降低晶片製備負擔。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-emerald-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>晶片執行：微流體裝置微量培養細胞，回傳真實毒性生理數據。</span>
+          </li>
+          <li class="flex items-start">
+            <span class="text-emerald-400 mr-3 mt-1 text-xl leading-none">•</span>
+            <span>智能閉環：少次數完成高精度篩選，加速癌症個人化治療研發。</span>
+          </li>
+        </ul>
+      </div>
+      <div class="absolute bottom-6 text-slate-500 text-xs">● 已至簡報末頁</div>
+    </section>
+
+  </main>
+
+</body>
+</html>
